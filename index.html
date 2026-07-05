@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0e1411">
+<meta name="description" content="NNEZ2427 · 纯公益原版生存 Minecraft 服务器 — 以友谊为核心，纯粹生存体验。">
+<title>NNEZ2427 · 纯粹生存 · 以友谊为核心</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjMGUxNDExIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjkiIGhlaWdodD0iOSIgZmlsbD0iIzZhYTg0ZiIvPjxyZWN0IHg9IjE3IiB5PSI2IiB3aWR0aD0iOSIgaGVpZ2h0PSI5IiBmaWxsPSIjN2E1YTNhIi8+PHJlY3QgeD0iNiIgeT0iMTciIHdpZHRoPSI5IiBoZWlnaHQ9IjkiIGZpbGw9IiMzYThhY2MiLz48cmVjdCB4PSIxNyIgeT0iMTciIHdpZHRoPSI5IiBoZWlnaHQ9IjkiIGZpbGw9IiM0YWQ4ZTgiLz48cmVjdCB4PSI2IiB5PSI2IiB3aWR0aD0iOSIgaGVpZ2h0PSIzIiBmaWxsPSIjN2NiODVhIi8+PC9zdmc+">
+<!-- 哀悼模式：true = 全站黑白 | false = 正常 | 'auto' = 仅9月18日自动开启 -->
+<script>
+  const MOURNING = 'auto';
+  (function(){
+    if (MOURNING === true || MOURNING === 'true' || (MOURNING === 'auto' && new Date().getMonth() === 8 && new Date().getDate() === 18)) {
+      document.documentElement.style.filter = 'grayscale(100%)';
+    }
+  })();
+</script>
+<!-- Loader 内联样式 — 确保在外部CSS加载前就能渲染 -->
+<style>
+  :root{--bg-dark:#0e1411;--grass:#6aa84f;--diamond:#4ad8e8;--ease:cubic-bezier(.2,.8,.2,1)}
+  .loader{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:var(--bg-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s var(--ease),visibility .6s var(--ease)}
+  .loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+  .loader-logo{width:clamp(120px,22vw,200px);height:auto;filter:drop-shadow(0 0 24px rgba(106,168,79,.3));animation:logoFloat 2.4s var(--ease) infinite}
+  @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .loader-bar{width:clamp(100px,18vw,160px);height:3px;border-radius:100px;background:rgba(255,255,255,.12);overflow:hidden}
+  .loader-bar span{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--grass),var(--diamond));animation:loadFill 1.4s var(--ease) forwards}
+  @keyframes loadFill{0%{width:0}100%{width:100%}}
+  .loader-text{font-family:'Anton','Noto Sans SC',sans-serif;font-size:16px;letter-spacing:.3em;color:rgba(255,255,255,.7)}
+</style>
+<!-- Lenis 平滑滚动 (~4KB) -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<link rel="stylesheet" href="style.css">
+<style>
+  html.is-mobile body>*:not(.mobile-block):not(.mobile-confirm){display:none!important}
+  html.is-mobile .mobile-block{display:flex}
+  html.is-mobile{overflow:hidden}
+  .mobile-block{display:none;position:fixed;inset:0;z-index:99999;background:#0e1411;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:40px;text-align:center}
+  .mobile-block h1{font-family:'Anton','Noto Sans SC',sans-serif;font-size:28px;color:#fff;letter-spacing:.04em}
+  .mobile-block p{font-family:'Inter','Noto Sans SC',sans-serif;font-size:15px;color:rgba(255,255,255,.6);line-height:1.6;max-width:300px}
+  .mobile-block .icon{font-size:48px}
+  .mobile-block .btn-group{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .mobile-block .btn-secondary{font-family:'Inter','Noto Sans SC',sans-serif;font-size:13px;color:rgba(255,255,255,.4);background:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 24px;cursor:pointer;transition:all .2s}
+  .mobile-block .btn-secondary:hover,.mobile-block .btn-secondary:active{color:#fff;border-color:rgba(255,255,255,.3)}
+  .mobile-confirm{display:none;position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:24px}
+  .mobile-confirm.show{display:flex}
+  .mobile-confirm-box{background:#1a1a1a;border-radius:16px;padding:32px 24px;max-width:300px;text-align:center;display:flex;flex-direction:column;gap:16px}
+  .mobile-confirm-box h2{font-family:'Anton','Noto Sans SC',sans-serif;font-size:20px;color:#fff}
+  .mobile-confirm-box p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.5}
+  .mobile-confirm-box .btns{display:flex;gap:12px;margin-top:4px}
+  .mobile-confirm-box .btn-ok{flex:1;font-family:'Inter','Noto Sans SC',sans-serif;font-size:14px;font-weight:600;color:#000;background:#6aa84f;border:none;border-radius:10px;padding:12px;cursor:pointer}
+  .mobile-confirm-box .btn-cancel{flex:1;font-family:'Inter','Noto Sans SC',sans-serif;font-size:14px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);border:none;border-radius:10px;padding:12px;cursor:pointer}
+  html.mobile-allow .mobile-block,html.mobile-allow .mobile-confirm{display:none!important}
+  html.mobile-allow{overflow:auto}
+</style>
+<script>
+var ua = navigator.userAgent;
+var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+var isTablet = /iPad|Tablet|Android(?!.*Mobile)/i.test(ua) || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(ua));
+if((isMobile || isTablet) && !sessionStorage.getItem('mobile-allow')){
+  document.documentElement.classList.add('is-mobile');
+}
+function mobileConfirm(){
+  document.querySelector('.mobile-confirm').classList.add('show');
+}
+function mobileCancel(){
+  document.querySelector('.mobile-confirm').classList.remove('show');
+}
+function mobileAllow(){
+  sessionStorage.setItem('mobile-allow','1');
+  document.documentElement.classList.remove('is-mobile');
+  document.querySelector('.mobile-block').style.display='none';
+  document.querySelector('.mobile-confirm').style.display='none';
+  location.reload();
+}
+</script>
+</head>
+<body>
+<div class="mobile-block">
+  <div class="icon">🖥️</div>
+  <h1>请使用电脑访问</h1>
+  <p>本站为桌面端优化，请使用电脑浏览器打开以获得最佳体验。</p>
+  <div class="btn-group">
+    <button class="btn-secondary" onclick="mobileConfirm()">仍要访问</button>
+  </div>
+</div>
+<div class="mobile-confirm">
+  <div class="mobile-confirm-box">
+    <h2>⚠️ 确认继续？</h2>
+    <p>移动端进入可能导致网页加载异常，部分交互功能不可用。</p>
+    <div class="btns">
+      <button class="btn-cancel" onclick="mobileCancel()">返回</button>
+      <button class="btn-ok" onclick="mobileAllow()">确认访问</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE LOADER ============ -->
+<div class="loader" id="loader">
+  <img src="images/mc-logo.svg" class="loader-logo" alt="NNEZ2427">
+  <div class="loader-bar"><span></span></div>
+  <p class="loader-text">NNEZ2427</p>
+</div>
+
+<!-- ============ CUSTOM CURSOR (desktop only) ============ -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ HERO SECTION ============ -->
+<header class="hero" id="home">
+  <div class="hero-bg-word" aria-hidden="true">SURVIVAL</div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <span class="nav-glass-edge" aria-hidden="true"></span>
+    <a href="#home" class="nav-logo" aria-label="NNEZ2427 首页">
+      <span class="logo-cube"></span>NNEZ<span class="logo-accent">2427</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#features">特色</a></li>
+      <li><a href="#creations">作品</a></li>
+      <li><a href="#rules">规则</a></li>
+      <li><a href="#join">加入</a></li>
+    </ul>
+    <a href="#join" class="nav-cta">加入服务器</a>
+    <button class="nav-burger" id="navBurger" aria-label="菜单"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">首页</a>
+    <a href="#about">关于</a>
+    <a href="#features">特色</a>
+    <a href="#creations">作品</a>
+    <a href="#rules">规则</a>
+    <a href="#join">加入</a>
+  </div>
+
+  <!-- Hero subject with B&W -> color brush reveal -->
+  <div class="hero-stage">
+    <div class="hero-reveal" id="heroReveal">
+      <!-- bottom layer: grayscale -->
+      <img src="images/hero-scene.png" class="hero-img hero-bw" alt="NNEZ2427 服务器主视觉" draggable="false">
+      <!-- top layer: full color, revealed by mask -->
+      <img src="images/hero-scene.png" class="hero-img hero-color" alt="" draggable="false" aria-hidden="true">
+      <span class="hero-hint" id="heroHint">移动 / 触摸 上色</span>
+    </div>
+  </div>
+
+  <!-- Side hero text -->
+  <div class="hero-side hero-side--left reveal">
+    <p class="hero-eyebrow">EST. 2024 · 第二周目</p>
+    <p class="hero-sub">纯粹生存 · 以友谊为核心</p>
+  </div>
+
+  <!-- Circular badge -->
+  <div class="hero-side hero-side--right reveal">
+    <div class="badge" id="heroBadge">
+      <svg viewBox="0 0 120 120" class="badge-svg">
+        <defs><path id="badgePath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+        <text class="badge-text"><textPath href="#badgePath" startOffset="0%">NNEZ2427 · PURE SURVIVAL · FRIENDSHIP · </textPath></text>
+      </svg>
+      <span class="badge-core">MC</span>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <a href="#about" class="scroll-cue" aria-label="向下滚动">
+    <span class="scroll-cue-text">SCROLL</span>
+    <span class="scroll-cue-line"></span>
+  </a>
+</header>
+
+<main>
+
+<!-- ============ UPTIME COUNTER (开服计时) ============ -->
+<section class="uptime section-dark" id="uptime">
+  <div class="container uptime-inner reveal">
+    <p class="section-label section-label--light">// 稳定运行</p>
+    <h2 class="uptime-title">服务器已稳定运行</h2>
+    <div class="uptime-clock" id="uptimeClock" aria-live="polite">
+      <div class="uc-item"><b id="ucDays">0</b></div>
+      <div class="uc-sep">:</div>
+      <div class="uc-item"><b id="ucHours">00</b></div>
+      <div class="uc-sep">:</div>
+      <div class="uc-item"><b id="ucMins">00</b></div>
+      <div class="uc-sep">:</div>
+      <div class="uc-item"><b id="ucSecs">00</b></div>
+    </div>
+    <p class="uptime-since">自 2026 年 1 月 1 日起持续运行 · 与你不见不散</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT SECTION ============ -->
+<section class="about section-light" id="about">
+  <div class="container">
+    <div class="about-head reveal">
+      <p class="section-label">关于服务器 / ABOUT</p>
+      <p class="about-lead">一个纯公益、零氪金的原版生存世界。困难难度、死亡不掉落，把最纯粹的 Minecraft 体验留给真正热爱方块世界的人。</p>
+    </div>
+
+    <h2 class="about-title reveal">
+      <span>以方块之名</span>
+      <span class="title-outline">筑友谊之城</span>
+    </h2>
+
+    <!-- Staggered image cards -->
+    <div class="about-grid">
+      <figure class="about-card about-card--tall reveal" style="--d:.05s">
+        <img src="images/about-1.png" alt="森林风景" loading="lazy">
+        <figcaption>森林原野</figcaption>
+      </figure>
+      <figure class="about-card reveal" style="--d:.15s">
+        <img src="images/about-2.png" alt="玩家木屋与樱花树" loading="lazy">
+        <figcaption>玩家木屋</figcaption>
+      </figure>
+      <figure class="about-card reveal" style="--d:.25s">
+        <img src="images/about-3.png" alt="全物品仓库" loading="lazy">
+        <figcaption>全物品仓库</figcaption>
+      </figure>
+      <figure class="about-card about-card--tall reveal" style="--d:.35s">
+        <img src="images/about-4.png" alt="刷沙机" loading="lazy">
+        <figcaption>刷沙机</figcaption>
+      </figure>
+    </div>
+
+    <!-- Quick stats -->
+    <div class="stats reveal">
+      <div class="stat"><span class="stat-num" data-count="2024">0</span><span class="stat-label">开服年份</span></div>
+      <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">运行周目</span></div>
+      <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label">核心特色</span></div>
+      <div class="stat"><span class="stat-num" data-count="0">0</span><span class="stat-label">付费项目</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES SECTION (六大特色) ============ -->
+<section class="features section-dark" id="features">
+  <div class="container">
+    <div class="features-head reveal">
+      <p class="section-label section-label--light">六大特色 / WHY US</p>
+      <h2 class="features-title">我们只做<span class="accent-grass">纯粹</span>的事</h2>
+    </div>
+
+    <div class="features-rail reveal">
+      <!-- decorative connector -->
+      <svg class="rail-line" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="0" y1="20" x2="1200" y2="20" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-dasharray="2 10"/>
+      </svg>
+      <div class="feature" style="--d:.0s">
+        <div class="feature-blob">◐</div>
+        <span class="feature-pct">多元</span>
+        <h3 class="feature-name">多元社区</h3>
+        <p class="feature-desc">包容建筑、红石、探险、PVP 各类玩家，找到你的同好。</p>
+      </div>
+      <div class="feature" style="--d:.08s">
+        <div class="feature-blob">▲</div>
+        <span class="feature-pct">硬核</span>
+        <h3 class="feature-name">硬核原版</h3>
+        <p class="feature-desc">困难难度、死亡不掉落，纯净原版生存玩法。</p>
+      </div>
+      <div class="feature" style="--d:.16s">
+        <div class="feature-blob">✦</div>
+        <span class="feature-pct">生电</span>
+        <h3 class="feature-name">生电友好</h3>
+        <p class="feature-desc">支持自动农场、刷铁机等红石机械，大型装置需报备。</p>
+      </div>
+      <div class="feature" style="--d:.24s">
+        <div class="feature-blob">↻</div>
+        <span class="feature-pct">更新</span>
+        <h3 class="feature-name">紧跟更新</h3>
+        <p class="feature-desc">及时跟进官方版本，第一时间体验新内容。</p>
+      </div>
+      <div class="feature" style="--d:.32s">
+        <div class="feature-blob">✕</div>
+        <span class="feature-pct">零容忍</span>
+        <h3 class="feature-name">零容忍外挂</h3>
+        <p class="feature-desc">严禁飞行、复制、矿透、投影打印机等作弊行为。</p>
+      </div>
+      <div class="feature" style="--d:.40s">
+        <div class="feature-blob">♡</div>
+        <span class="feature-pct">公益</span>
+        <h3 class="feature-name">纯公益</h3>
+        <p class="feature-desc">完全免费，零付费项目，零氪金，用爱发电。</p>
+      </div>
+    </div>
+
+    <!-- Skill bar showcase -->
+    <div class="skillshow reveal">
+      <div class="skillshow-num"><span class="skill-pct" data-count="100">0</span>%</div>
+      <div class="skillshow-body">
+        <h3 class="skillshow-title">原版纯净度</h3>
+        <p class="skillshow-sub">无任何付费道具 · 无商业化干预 · 还原 Minecraft 最本真的模样</p>
+        <div class="skill-bar"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CREATIONS / GALLERY SLIDER ============ -->
+<section class="creations section-light" id="creations">
+  <div class="container">
+    <p class="section-label reveal">服务器作品 / CREATIONS</p>
+    <h2 class="creations-title reveal">玩家共创<span class="title-outline">方块世界</span></h2>
+
+    <div class="slider reveal" id="slider">
+      <div class="slider-track" id="sliderTrack">
+        <article class="slide">
+          <img src="images/creation-1.png" alt="暗夜塔楼" loading="lazy">
+          <div class="slide-overlay"><h4>暗夜塔楼</h4><p>信标光柱 · 夜景奇观</p></div>
+        </article>
+        <article class="slide">
+          <img src="images/creation-2.png" alt="冰晶奇树" loading="lazy">
+          <div class="slide-overlay"><h4>冰晶奇树</h4><p>创意建筑 · 水晶之树</p></div>
+        </article>
+        <article class="slide">
+          <img src="images/creation-3.png" alt="全自动猪人塔" loading="lazy">
+          <div class="slide-overlay"><h4>全自动猪人塔</h4><p>下界传送门 · 生电装置</p></div>
+        </article>
+        <article class="slide">
+          <img src="images/creation-4.png" alt="刷沙机" loading="lazy">
+          <div class="slide-overlay"><h4>刷沙机</h4><p>生电红石装置</p></div>
+        </article>
+        <article class="slide">
+          <img src="images/about-2.png" alt="玩家小屋" loading="lazy">
+          <div class="slide-overlay"><h4>玩家小屋</h4><p>温馨居所 · 建筑作品</p></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="slider-controls reveal">
+      <button class="slider-arrow" id="prevBtn" aria-label="上一张">←</button>
+      <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-arrow" id="nextBtn" aria-label="下一张">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RULES SECTION ============ -->
+<section class="rules section-light" id="rules">
+  <div class="container">
+    <p class="section-label reveal">服务器规则 / RULES</p>
+    <h2 class="rules-title reveal">守规矩，<span class="accent-redstone">方得长久</span></h2>
+
+    <ol class="rules-list">
+      <li class="rule-item reveal" style="--d:.0s"><span class="rule-no">01</span><div><h3>尊重物权</h3><p>不擅自取用他人物品。</p></div></li>
+      <li class="rule-item reveal" style="--d:.06s"><span class="rule-no">02</span><div><h3>禁止作弊</h3><p>一经发现永久封禁。</p></div></li>
+      <li class="rule-item reveal" style="--d:.12s"><span class="rule-no">03</span><div><h3>模组规范</h3><p>允许生电辅助，禁止投影打印机 / X-Ray。</p></div></li>
+      <li class="rule-item reveal" style="--d:.18s"><span class="rule-no">04</span><div><h3>文明联机</h3><p>禁止人身攻击。</p></div></li>
+      <li class="rule-item reveal" style="--d:.24s"><span class="rule-no">05</span><div><h3>保护财产</h3><p>禁止破坏或盗取。</p></div></li>
+      <li class="rule-item reveal" style="--d:.30s"><span class="rule-no">06</span><div><h3>装置报备</h3><p>大型装置需向管理报备。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ JOIN SECTION ============ -->
+<section class="join section-dark" id="join">
+  <div class="container">
+    <p class="section-label section-label--light reveal">加入方式 / JOIN US</p>
+    <h2 class="join-title reveal">三步，<span class="accent-diamond">进入世界</span></h2>
+
+    <div class="join-steps reveal">
+      <div class="step"><span class="step-no">1</span><h3>加入 QQ 群</h3><p>群号 <code>点击下方按钮加入</code></p></div>
+      <div class="step"><span class="step-no">2</span><h3>申请白名单</h3><p>联系管理员审核</p></div>
+      <div class="step"><span class="step-no">3</span><h3>连接游戏</h3><p>加入服务器开玩</p></div>
+    </div>
+
+    <div class="join-cards reveal">
+      <div class="join-card">
+        <span class="join-card-label">生存服地址</span>
+        <button class="copy-btn" data-copy="110.42.33.89" aria-label="复制地址">复制</button>
+        <code class="join-card-val">110.42.33.89</code>
+        <span class="join-card-sub">26 服端口：110.42.33.89:2427</span>
+      </div>
+      <div class="join-card">
+        <span class="join-card-label">IPv6 备用</span>
+        <button class="copy-btn" data-copy="240E:F7:A020:203::9:1a7" aria-label="复制地址">复制</button>
+        <code class="join-card-val join-card-val--sm">240E:F7:A020:203::9:1a7</code>
+      </div>
+      <div class="join-card">
+        <span class="join-card-label">网盘地址</span>
+        <button class="copy-btn" data-copy="110.42.111.49:2427" aria-label="复制地址">复制</button>
+        <code class="join-card-val">110.42.111.49:2427</code>
+      </div>
+      <div class="join-card join-card--qq">
+        <span class="join-card-label">官方 QQ 群</span>
+        <code class="join-card-val">点击按钮加群</code>
+        <a class="copy-btn copy-btn--solid" href="https://qm.qq.com/q/qpD1S8iAoK" target="_blank" rel="noopener">加群</a>
+      </div>
+    </div>
+
+    <div class="hardware reveal">
+      <span class="hardware-label">服务器硬件</span>
+      <p>Intel Core i9-14900KF · 托管于雨云</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="footer">
+  <div class="footer-bg-word" aria-hidden="true">MINECRAFT</div>
+  <div class="footer-content">
+    <div class="footer-thanks reveal">
+      <span>感谢</span><span class="title-outline">游玩</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="#home">首页</a>
+      <a href="#about">关于</a>
+      <a href="#features">特色</a>
+      <a href="#creations">作品</a>
+      <a href="#rules">规则</a>
+      <a href="#join">加入</a>
+    </nav>
+    <div class="footer-social reveal">
+      <a href="https://qm.qq.com/q/qpD1S8iAoK" target="_blank" rel="noopener" aria-label="QQ群">QQ群</a>
+      <a href="#join" aria-label="网盘">网盘</a>
+      <a href="#home" aria-label="顶部">顶部</a>
+    </div>
+    <p class="footer-copy">© <span id="footerYear"></span> NNEZ2427 · 纯公益原版生存服务器 · 以友谊为核心</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
